@@ -5,3 +5,7 @@ export interface PortfolioItem {
     close: string
     volume: string
 }
+
+interface SearchProps {
+    placeholder: string;
+}
