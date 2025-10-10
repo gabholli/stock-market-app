@@ -24,6 +24,8 @@ export default function Home() {
             })
     }, [])
 
+    console.log(Object.values(portfolio)[0])
+
     return (
         <div>
             <Search placeholder="Enter symbol..." />
