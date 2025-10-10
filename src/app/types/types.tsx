@@ -6,6 +6,6 @@ export interface PortfolioItem {
     volume: string
 }
 
-interface SearchProps {
+export interface SearchProps {
     placeholder: string;
 }

@@ -8,6 +8,7 @@ import Search from "./components/Search"
 
 export default function Home() {
     const searchParams = useSearchParams()
+    console.log(searchParams)
     const [portfolio, setPortfolio] = useState<PortfolioItem[]>([])
 
     useEffect(() => {
@@ -23,11 +24,9 @@ export default function Home() {
             })
     }, [])
 
-    console.log(portfolio)
-
     return (
         <div>
-            <Search placeholder="Enter symbol" />
+            <Search placeholder="Enter symbol..." />
         </div>
     )
 }
