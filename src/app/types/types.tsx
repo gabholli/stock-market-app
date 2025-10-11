@@ -1,8 +1,9 @@
 export interface PortfolioItem {
     symbol: string
     name: string
-    price: number
-    changePercentage: number
+    change: number
+    percent_change: number
+    key: string
 }
 
 export interface SearchProps {

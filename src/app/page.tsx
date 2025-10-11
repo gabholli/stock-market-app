@@ -9,6 +9,7 @@ import Search from "./components/Search"
 export default function Home() {
     const searchParams = useSearchParams()
     const [portfolio, setPortfolio] = useState<PortfolioItem[]>([])
+    const [list, setList] = useState([])
 
     useEffect(() => {
         const symbolQuery = searchParams.get("symbol")
@@ -17,36 +18,24 @@ export default function Home() {
         axios.get("/api/stockData?" + new URLSearchParams({ symbol: symbolQuery }).toString())
             .then((response) => {
                 console.log('API Response:', response.data)
-                setPortfolio(response.data)
+                setPortfolio([response.data])
             }).catch((error: string) => {
                 console.error('API Error:', error)
             })
-    }, [])
+    }, [searchParams])
 
-    console.log(portfolio)
-    const portfolioData = portfolio?.map(item => {
+    const portfolioData = portfolio?.map((item) => {
         return (
-            <div>
-                <div className="flex justify-between">
-                    <div className="flex flex-col justify-center items-start">
-                        <h1>
-                            {item.symbol}
-                        </h1>
-                        <p>
-                            {item.name}
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            {item.price}
-                        </p>
-                        <p>
-                            {item.changePercentage}%
-                        </p>
-                    </div>
+            <div key={item.symbol}
+                className="border-2 text-center p-2">
+                <div className="border-b-2 p-1">
+                    <h1>{item.symbol}</h1>
+                    <p>{item.name}</p>
                 </div>
-
-
+                <div className="p-1">
+                    <p>{item.change}</p>
+                    <p>{item.percent_change}%</p>
+                </div>
             </div>
         )
     })
@@ -54,7 +43,9 @@ export default function Home() {
     return (
         <div>
             <Search placeholder="Enter symbol..." />
-            {portfolioData}
+            <main className="mt-6">
+                {portfolioData}
+            </main>
         </div>
     )
 }
