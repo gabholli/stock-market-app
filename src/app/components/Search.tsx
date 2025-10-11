@@ -23,7 +23,7 @@ export default function Search({ placeholder, onSearch }: { placeholder: string,
                 placeholder={placeholder}
                 className="border p-2"
             />
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
                 Search
             </button>
         </form>
