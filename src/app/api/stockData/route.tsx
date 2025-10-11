@@ -23,7 +23,7 @@ import { NextRequest } from 'next/server'
 
 export async function GET() {
     try {
-        const response = await axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=${process.env.FINANCIAL_KEY}`, {
+        const response = await axios.get(`https://financialmodelingprep.com/stable/quote?symbol=AAPL&&apikey=${process.env.FINANCIAL_KEY}`, {
         })
 
         return new Response(JSON.stringify(response.data), { status: 200 });

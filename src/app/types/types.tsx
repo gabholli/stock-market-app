@@ -1,9 +1,8 @@
 export interface PortfolioItem {
-    open: string
-    high: string
-    low: string
-    close: string
-    volume: string
+    symbol: string
+    name: string
+    price: number
+    changePercentage: number
 }
 
 export interface SearchProps {
