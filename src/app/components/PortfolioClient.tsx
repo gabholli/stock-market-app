@@ -27,7 +27,7 @@ export default function PortfolioClient() {
     const portfolioData = portfolio?.map((item) => {
         return (
             <div key={item.symbol}
-                className="border-2 text-center p-2">
+                className="border-2 text-center p-2 max-w-84">
                 <div className="border-b-2 p-1">
                     <h1>{item.symbol}</h1>
                     <p>{item.name}</p>
@@ -41,7 +41,7 @@ export default function PortfolioClient() {
     })
 
     return (
-        <div>
+        <div className="flex flex-col justify-center items-center">
             <Search placeholder="Enter symbol..." />
             <main className="mt-6">
                 {portfolioData}
