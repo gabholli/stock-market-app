@@ -14,9 +14,16 @@ export default function PortfolioClient() {
             const response = await axios.get("/api/stockData?" + new URLSearchParams({ symbol }).toString())
             const newItem: PortfolioItem = response.data
 
+            if (!newItem || !newItem.symbol) {
+                console.warn("Invalid item received:", newItem)
+                return
+            }
+
             setList(prevList => {
                 const alreadyExists = prevList.some(item => item.symbol === newItem.symbol)
-                return alreadyExists ? prevList : [...prevList, newItem]
+                return alreadyExists
+                    ? prevList.map(item => item.symbol === newItem.symbol ? newItem : item)
+                    : [...prevList, newItem]
             })
         } catch (error) {
             console.error("API Error:", error)
@@ -28,7 +35,14 @@ export default function PortfolioClient() {
             const updatedItems = await Promise.all(
                 list.map(async (item) => {
                     const response = await axios.get("/api/stockData?" + new URLSearchParams({ symbol: item.symbol }).toString())
-                    return response.data
+                    const updatedItem: PortfolioItem = response.data
+
+                    if (!updatedItem || !updatedItem.symbol) {
+                        console.warn("Invalid update for symbol:", item.symbol)
+                        return item // fallback to old item
+                    }
+
+                    return updatedItem
                 })
             )
 
