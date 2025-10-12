@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="font-mono p-8 md:text-3xl lg:text-4xl"
+        className="font-mono p-8 lg:text-2xl xl:text-3xl"
       >
         <Header />
         {children}
