@@ -23,8 +23,15 @@ export default function PortfolioClient() {
         }
     }
 
+    const deleteAllItems = (() => {
+        setList([])
+    })
+
     return (
         <div className="flex flex-col justify-center items-center">
+            <button className="bg-blue-100 px-2 py-1 rounded-xl border-black border-2
+                mb-10 cursor-pointer"
+                onClick={deleteAllItems}>Delete All</button>
             <Search placeholder="Enter symbol..." onSearch={handleSearch} />
             <main className="mt-6">
                 {list.map((item) => (
