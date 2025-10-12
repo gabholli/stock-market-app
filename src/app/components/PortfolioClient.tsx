@@ -7,76 +7,44 @@ import { PortfolioItem } from "../types/types"
 import Search from "../components/Search"
 
 export default function PortfolioClient() {
-    const [list, setList] = useState<PortfolioItem[]>([])
+    const searchParams = useSearchParams()
+    const [portfolio, setPortfolio] = useState<PortfolioItem[]>([])
+    const [list, setList] = useState([])
 
-    const handleSearch = async (symbol: string) => {
-        try {
-            const response = await axios.get("api/stockData?" + new URLSearchParams({ symbol }).toString())
-            const newItem: PortfolioItem = response.data
+    useEffect(() => {
+        const symbolQuery = searchParams.get("symbol")
+        if (!symbolQuery) return
 
-            if (!newItem || !newItem.symbol) {
-                console.warn("Invalid item received", newItem)
-                return
-            }
-            setList((prevList) => {
-                const alreadyExists = prevList.some(item => item.symbol == newItem.symbol)
-                return alreadyExists
-                    ? prevList.map((item) => (item.symbol === newItem.symbol ? newItem : item))
-                    : [...prevList, newItem]
+        axios.get("/api/stockData?" + new URLSearchParams({ symbol: symbolQuery }).toString())
+            .then((response) => {
+                console.log('API Response:', response.data)
+                setPortfolio([response.data])
+            }).catch((error: string) => {
+                console.error('API Error:', error)
             })
-        } catch (error) {
-            console.error("API error:", error)
-        }
-    }
+    }, [searchParams])
 
-    const handleUpdateAll = async () => {
-        try {
-            const updatedItems = await Promise.all(
-                list.map(async (item) => {
-                    const response = await axios.get("api/stockData?" + new URLSearchParams({ symbol: item.symbol }).toString())
-                    const updatedItem: PortfolioItem = response.data
-
-                    if (!updatedItem || !updatedItem.symbol) {
-                        console.warn("Invalid update for symbol", item.symbol)
-                        return item
-                    }
-                    return updatedItem
-                })
-            )
-            setList(updatedItems)
-        } catch (error) {
-            console.error("Error updating items:", error)
-        }
-    }
+    const portfolioData = portfolio?.map((item) => {
+        return (
+            <div key={item.symbol}
+                className="border-2 text-center p-2 max-w-xl">
+                <div className="border-b-2 p-1">
+                    <h1>{item.symbol}</h1>
+                    <p>{item.name}</p>
+                </div>
+                <div className="p-1">
+                    <p>{item.change}</p>
+                    <p>{item.percent_change}%</p>
+                </div>
+            </div>
+        )
+    })
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <button
-                onClick={handleUpdateAll}
-                className="bg-blue-100 px-2 py-1 rounded-xl border-black border-2 mb-10 cursor-pointer">
-                Update All
-            </button>
-            <Search placeholder="Enter symbol..." onSearch={handleSearch} />
+            <Search placeholder="Enter symbol..." />
             <main className="mt-6">
-                {list.map((item) => (
-                    <div
-                        key={item.symbol}
-                        onClick={() => {
-                            setList((prevList) => prevList.filter((i) => i.symbol !== item.symbol))
-                        }}
-                        className="border-2 text-center p-2 max-w-xl mb-4 cursor-pointer hover:bg-red-100 transition"
-                        title="Click to remove"
-                    >
-                        <div>
-                            <h1>{item.symbol}</h1>
-                            <p>{item.name}</p>
-                        </div>
-                        <div>
-                            <p>{item.change}</p>
-                            <p>{item.percent_change}</p>
-                        </div>
-                    </div>
-                ))}
+                {portfolioData}
             </main>
         </div>
     )
