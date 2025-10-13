@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { PortfolioItem } from "../types/types"
 import Search from "../components/Search"
 
-export default function PortfolioClient() {
+const PortfolioClient = () => {
     const searchParams = useSearchParams()
     const [portfolio, setPortfolio] = useState<PortfolioItem[]>([])
     const [list, setList] = useState([])
@@ -49,3 +49,5 @@ export default function PortfolioClient() {
         </div>
     )
 }
+
+export default PortfolioClient
