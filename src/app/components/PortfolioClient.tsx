@@ -8,8 +8,8 @@ import Search from "../components/Search"
 
 const PortfolioClient = () => {
     const searchParams = useSearchParams()
-    const [portfolio, setPortfolio] = useState<PortfolioItem[]>([])
-    const [list, setList] = useState([])
+    const [item, setItem] = useState<PortfolioItem[]>([])
+    const [items, setItems] = useState([])
 
     useEffect(() => {
         const symbolQuery = searchParams.get("symbol")
@@ -18,23 +18,20 @@ const PortfolioClient = () => {
         axios.get("/api/stockData?" + new URLSearchParams({ symbol: symbolQuery }).toString())
             .then((response) => {
                 console.log('API Response:', response.data)
-                setPortfolio([response.data])
+                setItem([response.data])
             }).catch((error: string) => {
                 console.error('API Error:', error)
             })
     }, [searchParams])
 
-    const portfolioData = portfolio?.map((item) => {
+    const portfolioData = item?.map((currentItem) => {
         return (
-            <div key={item.symbol}
+            <div key={currentItem.symbol}
                 className="border-2 text-center p-2 max-w-xl">
                 <div className="border-b-2 p-1">
-                    <h1>{item.symbol}</h1>
-                    <p>{item.name}</p>
-                </div>
-                <div className="p-1">
-                    <p>{item.change}</p>
-                    <p>{item.percent_change}%</p>
+                    <h1>{currentItem.symbol}</h1>
+                    <p>{currentItem.change}</p>
+                    <p>{currentItem.percent_change}%</p>
                 </div>
             </div>
         )
