@@ -30,6 +30,9 @@ const PortfolioClient = () => {
                 className="border-2 text-center p-2 max-w-xl">
                 <div className="border-b-2 p-1">
                     <h1>{currentItem.symbol}</h1>
+                    <p>{currentItem.name}</p>
+                </div>
+                <div className="p-1">
                     <p>{currentItem.change}</p>
                     <p>{currentItem.percent_change}%</p>
                 </div>
