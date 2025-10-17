@@ -1,38 +1,25 @@
 "use client"
 
 import axios from "axios"
-import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { PortfolioItem } from "../types/types"
 import Search from "../components/Search"
 
 const PortfolioClient = () => {
-    const searchParams = useSearchParams()
+    const [input, setInput] = useState("")
     const [items, setItems] = useState<PortfolioItem[]>([])
 
-    // useEffect(() => {
-    //     const symbolQuery = searchParams.get("symbol")
-    //     if (!symbolQuery) return
-
-    //     axios.get("/api/stockData?" + new URLSearchParams({ symbol: symbolQuery }).toString())
-    //         .then((response) => {
-    //             console.log('API Response:', response.data)
-    //             setItem([response.data])
-    //         }).catch((error: string) => {
-    //             console.error('API Error:', error)
-    //         })
-    // }, [searchParams])
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        const symbolQuery = searchParams.get("symbol")
-        if (!symbolQuery) return
+        if (!input) return
 
-        axios.get("/api/stockData?" + new URLSearchParams({ symbol: symbolQuery }).toString())
+        axios.get("/api/stockData?" + new URLSearchParams({ symbol: input }).toString())
             .then((response) => {
                 console.log('API Response:', response.data)
                 // setItem([response.data])
                 setItems(prevItem => [...prevItem, response.data])
+                setInput("")
             }).catch((error: string) => {
                 console.error('API Error:', error)
             })
@@ -65,7 +52,10 @@ const PortfolioClient = () => {
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <Search placeholder="Enter symbol..." handleSubmit={handleSubmit} />
+            <Search placeholder="Enter symbol..."
+                setSymbolInput={setInput}
+                symbolInput={input}
+                handleSubmit={handleSubmit} />
             <main className="mt-6">
                 {portfolioData}
             </main>

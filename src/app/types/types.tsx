@@ -8,6 +8,8 @@ export interface PortfolioItem {
 }
 
 export interface SearchProps {
-    placeholder: string;
+    placeholder: string
     handleSubmit: (e: React.FormEvent) => void
+    symbolInput: string
+    setSymbolInput: React.Dispatch<React.SetStateAction<string>
 }
