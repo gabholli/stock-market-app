@@ -38,6 +38,10 @@ const PortfolioClient = () => {
             })
     }
 
+    const handleDelete = (symbol: string) => {
+
+    }
+
     console.log(items)
 
     const portfolioData = items?.map((currentItem) => {
