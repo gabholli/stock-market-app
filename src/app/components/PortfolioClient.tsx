@@ -24,6 +24,7 @@ const PortfolioClient = () => {
     // }, [searchParams])
 
     const handleSubmit = (e: React.FormEvent) => {
+        console.log("Clicked")
         e.preventDefault()
         const symbolQuery = searchParams.get("symbol")
         if (!symbolQuery) return
