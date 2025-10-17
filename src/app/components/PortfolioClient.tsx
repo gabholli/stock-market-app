@@ -50,7 +50,7 @@ const PortfolioClient = () => {
             <div
                 onClick={() => handleDelete(currentItem.symbol)}
                 key={currentItem.symbol}
-                className="border-2 text-center p-2 max-w-xl">
+                className="border-2 text-center p-2 max-w-xl mb-6">
                 <div className="border-b-2 p-1">
                     <h1>{currentItem.symbol}</h1>
                     <p>{currentItem.name}</p>
