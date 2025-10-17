@@ -38,15 +38,18 @@ const PortfolioClient = () => {
             })
     }
 
-    const handleDelete = (symbol: string) => {
-
+    const handleDelete = (symbolItem: string) => {
+        const newItems = items?.filter((item) => item.symbol !== symbolItem)
+        setItems(newItems)
     }
 
     console.log(items)
 
     const portfolioData = items?.map((currentItem) => {
         return (
-            <div key={currentItem.symbol}
+            <div
+                onClick={() => handleDelete(currentItem.symbol)}
+                key={currentItem.symbol}
                 className="border-2 text-center p-2 max-w-xl">
                 <div className="border-b-2 p-1">
                     <h1>{currentItem.symbol}</h1>
