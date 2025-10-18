@@ -20,16 +20,3 @@ export async function GET(req: NextRequest) {
         return new Response('Failed to fetch symbol details', { status: 500 })
     }
 }
-
-// export async function GET() {
-//     try {
-//         const response = await axios.get(`https://api.twelvedata.com/quote?symbol=AAPL&apikey=${process.env.FINANCIAL_KEY}`, {
-//         })
-
-//         return new Response(JSON.stringify(response.data), { status: 200 });
-//     } catch (error) {
-//         console.error(error);
-//         return new Response('Failed to fetch symbol', { status: 500 });
-//     }
-// }
-
