@@ -17,8 +17,11 @@ const PortfolioClient = () => {
         axios.get("/api/stockData?" + new URLSearchParams({ symbol: input }).toString())
             .then((response) => {
                 console.log('API Response:', response.data)
-                // setItem([response.data])
-                setItems(prevItem => [...prevItem, response.data])
+                const newItem = response.data
+                setItems(prevItems => {
+                    const alreadyExists = prevItems.some(item => item.symbol === newItem.symbol)
+                    return alreadyExists ? prevItems : [...prevItems, newItem]
+                })
                 setInput("")
             }).catch((error: string) => {
                 console.error('API Error:', error)
