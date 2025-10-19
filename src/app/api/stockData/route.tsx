@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { NextRequest } from 'next/server'
 
-export async function GET(req: NextRequest) {
+export const GET = async (req: NextRequest) => {
     const url = new URL(req.url)
 
     const symbol = url.searchParams.get('symbol')
