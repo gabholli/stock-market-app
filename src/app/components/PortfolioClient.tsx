@@ -4,6 +4,7 @@ import axios from "axios"
 import { useState } from "react"
 import { PortfolioItem } from "../types/types"
 import Search from "../components/Search"
+import Link from "next/link"
 
 const PortfolioClient = () => {
     const [input, setInput] = useState("")
@@ -37,18 +38,27 @@ const PortfolioClient = () => {
 
     const portfolioData = items?.map((currentItem) => {
         return (
-            <div
-                onClick={() => handleDelete(currentItem.symbol)}
-                key={currentItem.symbol}
-                className="border-2 text-center p-2 w-3xs md:w-xs lg:w-xl mb-6 hover:bg-red-100">
-                <div className="border-b-2 p-1">
-                    <h1>{currentItem.symbol}</h1>
-                    <p>{currentItem.name}</p>
-                </div>
-                <div className="p-1">
-                    <p>{currentItem.change}</p>
-                    <p>{currentItem.percent_change}%</p>
-                </div>
+            <div className="flex gap-x-4 justify-center items-center" key={currentItem.symbol}>
+
+                <Link href={"/stockDetails/" + currentItem.symbol}>
+                    <div
+                        key={currentItem.symbol}
+                        className="border-2 text-center p-2 w-3xs md:w-xs lg:w-xl mb-6 hover:bg-red-100">
+                        <div className="border-b-2 p-1">
+                            <h1>{currentItem.symbol}</h1>
+                            <p>{currentItem.name}</p>
+                        </div>
+                        <div className="p-1">
+                            <p>{currentItem.change}</p>
+                            <p>{currentItem.percent_change}%</p>
+                        </div>
+                    </div>
+                </Link>
+                <button
+                    onClick={() => handleDelete(currentItem.symbol)}
+                    className="mb-6 bg-blue-100 px-2 py-1">
+                    X
+                </button>
             </div>
         )
     })
