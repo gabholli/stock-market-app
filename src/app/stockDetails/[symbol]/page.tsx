@@ -24,7 +24,9 @@ const StockDetails = () => {
 
     return (
         <>
-            <Link href="/">Back to Portfolio</Link>
+            <Link
+                className="underline"
+                href="/">Back to Portfolio</Link>
             <div>Stock details here for {symbolValue}</div>
         </>
     )
