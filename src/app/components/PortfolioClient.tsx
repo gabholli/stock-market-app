@@ -56,7 +56,7 @@ const PortfolioClient = () => {
                 </Link>
                 <button
                     onClick={() => handleDelete(currentItem.symbol)}
-                    className="mb-6 bg-blue-100 px-2 py-1">
+                    className="mb-6 bg-blue-100 px-2 py-1 cursor-pointer">
                     X
                 </button>
             </div>
