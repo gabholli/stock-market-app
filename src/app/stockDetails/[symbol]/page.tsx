@@ -29,7 +29,7 @@ const StockDetails = () => {
     const stockInfo = shareData?.map((item: PortfolioItem) => {
         return (
             <React.Fragment key={item.symbol}>
-                <table className="md:table-auto border border-black">
+                <table className="md:table-auto border border-black bg-blue-100">
                     <tbody>
                         <tr>
                             <td className="border border-black p-3">Price low</td>
@@ -46,7 +46,7 @@ const StockDetails = () => {
                     </tbody>
                 </table>
                 <h1>52-Week Data:</h1>
-                <table className="md:table-auto border border-black">
+                <table className="md:table-auto border border-black bg-blue-100">
                     <tbody>
                         <tr>
                             <td className="border border-black p-3">Price low</td>
@@ -65,7 +65,7 @@ const StockDetails = () => {
     return (
         <main className="flex flex-col justify-center items-center gap-y-12">
             <Link
-                className="underline"
+                className="underline mt-2"
                 href="/">Back to Portfolio
             </Link>
             <h1 className="border-b-2 border-black">Details for {symbolValue}:</h1>
