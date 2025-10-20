@@ -27,10 +27,18 @@ const StockDetails = () => {
 
     const stockInfo = shareData?.map((item: PortfolioItem) => {
         return (
-            <section>
-                <p>Price low: ${item.low}</p>
-                <p>Price high ${item.high}</p>
-            </section>
+            <table className="md:table-auto border border-black">
+                <tbody>
+                    <tr>
+                        <td className="border border-black p-3">Price low</td>
+                        <td className="border border-black p-3">{item.low}</td>
+                    </tr>
+                    <tr>
+                        <td className="border border-black p-3">Price high</td>
+                        <td className="border border-black p-3">{item.high}</td>
+                    </tr>
+                </tbody>
+            </table>
         )
     })
 
