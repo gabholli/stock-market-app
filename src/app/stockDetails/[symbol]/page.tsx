@@ -24,7 +24,7 @@ const StockDetails = () => {
                 console.error('Stock Details API Error:', error)
             })
         console.log("Fetching details for symbol:", symbolValue)
-    }, [])
+    }, [symbolValue])
 
     const stockInfo = shareData?.map((item: PortfolioItem) => {
         return (

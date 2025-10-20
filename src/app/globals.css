@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
-@theme {
+:root {
     --font-montserrat: "Montserrat", sans-serif;
 }
 
 @font-face {
-    font-family: Montserrat;
+    font-family: "Montserrat";
     font-style: normal;
-    src: url("/fonts/Montserrat-Regular.ttf")
+    src: url("/fonts/Montserrat-Regular.ttf");
 }

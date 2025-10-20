@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 const Header = () => {
     return (
         <header className="mb-8 flex flex-col justify-center items-center gap-y-8">

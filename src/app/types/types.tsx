@@ -8,7 +8,11 @@ export interface PortfolioItem {
     low: string
     high: string
     previous_close: string
-    fifty_two_week: string
+    fifty_two_week: {
+        low: string
+        high: string
+    }
+
 }
 
 export interface SearchProps {
