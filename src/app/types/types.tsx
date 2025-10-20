@@ -1,5 +1,4 @@
 export interface PortfolioItem {
-    fifty: any
     symbol: string
     name: string
     change: number
