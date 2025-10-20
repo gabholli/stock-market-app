@@ -4,7 +4,8 @@ export interface PortfolioItem {
     change: number
     percent_change: number
     key: string
-
+    low: string
+    high: string
 }
 
 export interface SearchProps {

@@ -5,6 +5,7 @@ import { useState } from "react"
 import { PortfolioItem } from "../types/types"
 import Search from "../components/Search"
 import Link from "next/link"
+import { useItems } from "../stores/store"
 
 const PortfolioClient = () => {
     const [input, setInput] = useState("")
