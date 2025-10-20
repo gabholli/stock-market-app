@@ -40,7 +40,7 @@ const StockDetails = () => {
                 className="underline"
                 href="/">Back to Portfolio
             </Link>
-            <h1 className="border-b-2 border-black">Stock details here for {symbolValue}:</h1>
+            <h1 className="border-b-2 border-black">Details for {symbolValue}:</h1>
             {stockInfo}
         </main>
     )
