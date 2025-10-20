@@ -4,6 +4,7 @@ import { PortfolioItem } from "@/app/types/types"
 import axios from "axios"
 import Link from "next/link"
 import { useParams } from "next/navigation"
+import React from "react"
 import { useEffect, useState } from "react"
 
 const StockDetails = () => {
@@ -27,18 +28,37 @@ const StockDetails = () => {
 
     const stockInfo = shareData?.map((item: PortfolioItem) => {
         return (
-            <table className="md:table-auto border border-black">
-                <tbody>
-                    <tr>
-                        <td className="border border-black p-3">Price low</td>
-                        <td className="border border-black p-3">{item.low}</td>
-                    </tr>
-                    <tr>
-                        <td className="border border-black p-3">Price high</td>
-                        <td className="border border-black p-3">{item.high}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <React.Fragment key={item.symbol}>
+                <table className="md:table-auto border border-black">
+                    <tbody>
+                        <tr>
+                            <td className="border border-black p-3">Price low</td>
+                            <td className="border border-black p-3">${item.low}</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-black p-3">Price high</td>
+                            <td className="border border-black p-3">${item.high}</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-black p-3">Previous close</td>
+                            <td className="border border-black p-3">${item.previous_close}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1>52-Week Data:</h1>
+                <table className="md:table-auto border border-black">
+                    <tbody>
+                        <tr>
+                            <td className="border border-black p-3">Price low</td>
+                            <td className="border border-black p-3">${item.fifty_two_week.low}</td>
+                        </tr>
+                        <tr>
+                            <td className="border border-black p-3">Price high</td>
+                            <td className="border border-black p-3">${item.fifty_two_week.high}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </React.Fragment>
         )
     })
 

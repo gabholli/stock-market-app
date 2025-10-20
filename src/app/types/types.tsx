@@ -1,4 +1,5 @@
 export interface PortfolioItem {
+    fifty: any
     symbol: string
     name: string
     change: number
@@ -6,6 +7,8 @@ export interface PortfolioItem {
     key: string
     low: string
     high: string
+    previous_close: string
+    fifty_two_week: string
 }
 
 export interface SearchProps {
