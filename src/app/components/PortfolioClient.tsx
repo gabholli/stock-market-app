@@ -7,7 +7,7 @@ import Search from "../components/Search"
 import Link from "next/link"
 
 const getInitialItems = () => {
-    const portfolioItem = window.localStorage.getItem("Items")
+    const portfolioItem = localStorage.getItem("Items")
     return portfolioItem ? JSON.parse(portfolioItem) : []
 }
 
@@ -16,7 +16,7 @@ const PortfolioClient = () => {
     const [items, setItems] = useState<PortfolioItem[]>(getInitialItems)
 
     useEffect(() => {
-        window.localStorage.setItem("Items", JSON.stringify(items))
+        localStorage.setItem("Items", JSON.stringify(items))
     }, [items])
 
     const handleSubmit = (e: React.FormEvent) => {
