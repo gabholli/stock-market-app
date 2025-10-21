@@ -1,15 +1,23 @@
 "use client"
 
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { PortfolioItem } from "../types/types"
 import Search from "../components/Search"
 import Link from "next/link"
 
+const getInitialItems = () => {
+    const portfolioItem = window.localStorage.getItem("Items")
+    return portfolioItem ? JSON.parse(portfolioItem) : []
+}
+
 const PortfolioClient = () => {
     const [input, setInput] = useState("")
-    const [items, setItems] = useState<PortfolioItem[]>([])
+    const [items, setItems] = useState<PortfolioItem[]>(getInitialItems)
 
+    useEffect(() => {
+        window.localStorage.setItem("Items", JSON.stringify(items))
+    }, [items])
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -56,7 +64,7 @@ const PortfolioClient = () => {
                 </Link>
                 <button
                     onClick={() => handleDelete(currentItem.symbol)}
-                    className="mb-6 bg-blue-100 px-4 py-2 border-2 rounded-full cursor-pointer">
+                    className="mb-6 bg-blue-100 px-2 py-1 cursor-pointer">
                     X
                 </button>
             </div>
