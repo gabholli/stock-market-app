@@ -7,8 +7,11 @@ import Search from "../components/Search"
 import Link from "next/link"
 
 const getInitialItems = () => {
-    const portfolioItem = localStorage.getItem("Items")
-    return portfolioItem ? JSON.parse(portfolioItem) : []
+    if (typeof localStorage !== "undefined") {
+        const portfolioItem = localStorage.getItem("Items")
+        return portfolioItem ? JSON.parse(portfolioItem) : []
+    }
+
 }
 
 const PortfolioClient = () => {
