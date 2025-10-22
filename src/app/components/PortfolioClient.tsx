@@ -31,7 +31,7 @@ const PortfolioClient = () => {
         if (isLoaded) {
             localStorage.setItem("Items", JSON.stringify(items))
         }
-    }, [items])
+    }, [items, isLoaded])
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
