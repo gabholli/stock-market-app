@@ -65,7 +65,7 @@ const PortfolioClient = () => {
                 <Link href={"/stockDetails/" + currentItem.symbol}>
                     <div
                         key={currentItem.symbol}
-                        className="border-2 text-center p-2 w-3xs md:w-xs lg:w-xl mb-6 hover:bg-red-100">
+                        className="border-2 text-center p-2 w-3xs md:w-xs lg:w-xl mb-6 hover:bg-red-100 rounded-xl">
                         <div className="border-b-2 p-1">
                             <h1>{currentItem.symbol}</h1>
                             <p>{currentItem.name}</p>
@@ -78,7 +78,7 @@ const PortfolioClient = () => {
                 </Link>
                 <button
                     onClick={() => handleDelete(currentItem.symbol)}
-                    className="mb-6 bg-blue-100 px-2 py-1 cursor-pointer">
+                    className="mb-6 bg-blue-100 px-2 py-1 cursor-pointer rounded-xl border-2">
                     X
                 </button>
             </div>
