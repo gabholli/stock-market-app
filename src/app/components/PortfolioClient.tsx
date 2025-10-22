@@ -6,20 +6,31 @@ import { PortfolioItem } from "../types/types"
 import Search from "../components/Search"
 import Link from "next/link"
 
-const getInitialItems = () => {
-    if (typeof localStorage !== "undefined") {
-        const portfolioItem = localStorage.getItem("Items")
-        return portfolioItem ? JSON.parse(portfolioItem) : []
-    }
+// const getInitialItems = () => {
+//     if (typeof localStorage !== "undefined") {
+//         const portfolioItem = localStorage.getItem("Items")
+//         return portfolioItem ? JSON.parse(portfolioItem) : []
+//     }
 
-}
+// }
 
 const PortfolioClient = () => {
     const [input, setInput] = useState("")
-    const [items, setItems] = useState<PortfolioItem[]>(getInitialItems)
+    const [items, setItems] = useState<PortfolioItem[]>([])
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
-        localStorage.setItem("Items", JSON.stringify(items))
+        const storedItems = localStorage.getItem("Items")
+        if (storedItems) {
+            setItems(JSON.parse(storedItems))
+        }
+        setIsLoaded(true)
+    }, [])
+
+    useEffect(() => {
+        if (isLoaded) {
+            localStorage.setItem("Items", JSON.stringify(items))
+        }
     }, [items])
 
     const handleSubmit = (e: React.FormEvent) => {
