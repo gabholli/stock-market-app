@@ -46,7 +46,7 @@ const StockDetails = () => {
                     </tbody>
                 </table>
                 <h1>52-Week Data:</h1>
-                <table className="md:table-auto border border-black bg-blue-100">
+                <table className="md:table-auto border border-black bg-blue-100 mb-24">
                     <tbody>
                         <tr>
                             <td className="border border-black p-3">Price low</td>
