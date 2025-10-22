@@ -87,7 +87,7 @@ const PortfolioClient = () => {
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <Search placeholder="Enter symbol..."
+            <Search placeholder="e.g., AAPL"
                 setSymbolInput={setInput}
                 symbolInput={input}
                 handleSubmit={handleSubmit} />
